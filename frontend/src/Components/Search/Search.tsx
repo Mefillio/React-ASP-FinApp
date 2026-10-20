@@ -1,27 +1,18 @@
 import React, { useState } from 'react'
 
-type Props = {}
+interface Props {
+    onSearchSubmit: (e: React.SyntheticEvent) => void;
+    handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    search: string | undefined;
+}
 
-const Search = (props: Props) => {
-
-    const [search, setSearch] = useState<string>('');
-
-
-    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-        console.log(e);
-    }
-
-    const onClick = (e : React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        console.log(search);
-    }
-
+const Search = ({ onSearchSubmit, handleSearchChange, search }: Props) => {
   return (
-    <div>
-        <input value={search} onChange={(e) => handleChange(e)}></input>
-        <button onClick={onClick}>Search</button>
-    </div>
+    <>
+      <form onSubmit={onSearchSubmit}>
+        <input value={search} onChange={handleSearchChange} />
+      </form>
+    </>
   )
 }
 

@@ -1,22 +1,26 @@
 import React from 'react'
 import './Card.css'
+import { CompanySearch } from '../../company';
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
+
 interface Props {
-  companyName: string;
-  ticker: string;
-  price: number;
+  id: string;
+  searchResult : CompanySearch;
+  onPortfolioCreate: (e : React.SyntheticEvent) => void;
 };
 
-const Card = ({companyName, ticker, price}: Props) => {
+const Card = ({id, searchResult, onPortfolioCreate}: Props) => {
   return (
     <div className="card">
         
         <img src="https://images.unsplash.com/photo-1621768216002-5ac171876625?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Apple Logo"></img>
         <div className="details">
-          <h2>{companyName} {ticker}</h2>
-          <p>${price}</p>
+          <h2>{searchResult.name}</h2>
+          <h2>{searchResult.symbol}</h2>
+          <p>${searchResult.currency}</p> 
           <p className="information">Lorem ipsum dolor sit amet consectetur adipiscing elit facere est et quod nulla qui elit dolorem incididunt vero nulla enim ut laborum occaecat dolore id.</p>
         </div>
-
+        <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol} />
     </div>
   )
 }

@@ -9,7 +9,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-console.log(searchCompanies("AAPL")); // Example usage of the searchCompanies function
 root.render(
   <React.StrictMode>
     <App />

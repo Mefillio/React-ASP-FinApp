@@ -1,15 +1,20 @@
 import React from 'react'
 import Card from '../Card/Card'
+import { CompanySearch } from '../../company';
 
+interface Props {
+    searchResults: CompanySearch[];
+    onPortfolioCreate: (e : React.SyntheticEvent) => void;
+}
 
-interface Props {}
-
-const CardList = (props: Props) => {
+const CardList = ({searchResults, onPortfolioCreate}: Props) => {
   return (
     <div>
-        <Card companyName="Apple" ticker="APPL" price={110} />
-        <Card companyName="Microsoft" ticker="MSFT" price={200} />
-        <Card companyName="Google" ticker="GOOGL" price={150} />
+      {searchResults.length > 0 ? (
+        searchResults.map(result => {
+          return <Card id={result.symbol} key={crypto.randomUUID()} searchResult={result} onPortfolioCreate={onPortfolioCreate} />
+        })
+      ) : (<h1>No results found</h1>)}
     </div>
   )
 }
